@@ -1,2 +1,2 @@
 # GachaRolls
-Gacha results testing for molbile gaming
+Gacha results testing for mobile gaming
