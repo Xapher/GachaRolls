@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>gacha 1</title>
+</head>
+<body>
+	<section>
+		<p id="result">1</p>
+	</section>
+</body>
+
+<script type="text/javascript">
+	var result = document.getElementById('result');
+	var normal = 50, rare = 80, sr = 95, ur = 100;
+	var roll = 0.0;
+	var nCount = 0, rCount = 0, srCount = 0, urCount = 0;
+	var total = 10000;
+
+	var nUnits = [1000, 1001, 1002, 1003, 1004, 1005], rUnits = [2001, 2002, 2003], srUnits = [3001, 3002], urUnits = [4001];
+
+	var selectedDraw;
+
+	window.onload = function rollGacha() {
+		for (var i = 0; i < total; i++) {
+			roll = (Math.random() * 100);
+			if(roll < ur && roll > sr) {
+				urCount++;
+			}
+			else if(roll < sr && roll > rare) {
+				srCount++;
+			}
+			else if(roll < rare && roll > normal) {
+				rCount++;
+			}
+			else {
+				nCount++;
+			}
+		}
+
+		roll = (Math.random() * 100);
+		if(roll < ur && roll > sr) {
+			selectedDraw = urUnits;
+		}
+		else if(roll < sr && roll > rare) {
+			selectedDraw = srUnits;
+		}
+		else if(roll < rare && roll > normal) {
+			selectedDraw = rUnits;
+		}
+		else {
+			selectedDraw = nUnits;
+		}
+
+
+
+		console.log("N Chance:" + (nCount / total) + " with #" + nCount + " draws");
+		console.log("R Chance:" + (rCount / total) + " with #" + rCount + " draws");
+		console.log("SR Chance:" + (srCount / total) + " with #" + srCount + " draws");
+		console.log("UR Chance:" + (urCount / total) + " with #" + urCount + " draws");
+		console.log(selectedDraw.length);
+		console.log(Math.floor(selectedDraw.length * Math.random()));
+
+		result.innerHTML = selectedDraw[Math.floor(selectedDraw.length * Math.random())];
+	}
+</script>
+</html>
